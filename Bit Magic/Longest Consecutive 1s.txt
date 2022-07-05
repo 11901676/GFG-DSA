@@ -1,0 +1,32 @@
+class Solution{
+    
+    /*  Function to calculate the longest consecutive ones
+    *   N: given input to calculate the longest consecutive ones
+    */
+    public static int maxConsecutiveOnes(int n) {
+        
+        // Your code here
+        int longestConsecutiveSetBitLength = 0;
+        int count1s = 0;
+        for(int i = 0;i < 32 ;i++)
+        {
+            
+            if(((n>>i)&1)==1) // whenever 1 occurs turn that bit off and increase count 
+            {
+                //System.out.println(n);
+                n = n & (n-1);
+                count1s++;
+                //System.out.println(count1s);
+            }
+            else
+            {
+                count1s = 0; // when zero occurs set count again to zero
+            }
+            if(count1s > longestConsecutiveSetBitLength)
+            {
+                longestConsecutiveSetBitLength = count1s;
+            }
+        }
+        return longestConsecutiveSetBitLength;
+    }
+}

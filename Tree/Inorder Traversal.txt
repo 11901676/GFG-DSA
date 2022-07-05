@@ -1,0 +1,17 @@
+class Solution {
+    // Function to return a list containing the inorder traversal of the tree.
+    ArrayList<Integer> inOrder(Node root) {
+        // Code
+        ArrayList<Integer> arr = new ArrayList<Integer>();
+        if(root!=null)
+        {
+            //For every recursive call a separate arraylist will
+            // be generated 
+            // so for adding all those arraylist in arr we will use addAll()/
+            arr.addAll(inOrder(root.left));
+            arr.add(root.data);
+            arr.addAll(inOrder(root.right));
+        }
+        return arr;
+    }
+}

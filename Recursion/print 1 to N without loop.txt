@@ -1,0 +1,19 @@
+class Solution
+{
+    
+    static int printN(int N, int K)
+    {
+        if(N == 0)
+        {
+            return 0;
+        }
+        System.out.print(K+ " ");
+        return printN(N-1, K+1);
+    }
+    
+  public void printNos(int N)
+    {
+        //Your code here
+        printN(N,1);
+    }
+}

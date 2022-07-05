@@ -1,0 +1,29 @@
+class Solution
+{
+    //Function to check if two trees are identical.
+	boolean isIdentical(Node root1, Node root2)
+	{
+	    // Code Here
+	    if(root1==null && root2==null)
+	    {
+	        return true;
+	    }
+	    if(root1==null || root2==null)
+	    {
+	        return false;
+	    }
+	    else
+	    {
+	        // If the trees are identical then their inorder postorder or preorder
+	        // traversals will also be identical
+	        boolean leftT = isIdentical(root1.left,root2.left);
+	        boolean rightT= isIdentical(root1.right, root2.right);
+ // if both roots are not null   if any root or both are null then for their effect in final result
+ //                  \                             |
+ //                   \                            |
+	        return (root1.data==root2.data)&&leftT&&rightT;
+	    }
+	    
+	}
+	
+}

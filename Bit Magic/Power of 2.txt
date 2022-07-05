@@ -1,0 +1,17 @@
+class Solution{
+    
+    // Function to check if given number n is a power of two.
+    public static boolean isPowerofTwo(long n){
+        
+        // Your code here
+        // All the powers of 2 contains only one set bit
+        if((n&(n-1))==0 && n !=(n&(n-1))) // n !=(n&(n-1)) for avoiding the digits
+        {                                 // which have only one different bit as
+            return true;                  // 109 and 108
+        }
+        else
+        {
+            return false;
+        }
+        
+    }

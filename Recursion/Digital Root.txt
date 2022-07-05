@@ -1,0 +1,24 @@
+
+class Solution
+{
+    // complete the function
+    public static int digitalRoot(int n)
+    {
+        // add your code here
+        // Calcualte sum of digits of given number
+        if(n < 10)
+        {
+            return n;
+        }
+        
+        int sum = digitalRoot(n/10)+n%10;
+        
+        // Check for sum i.e. sum is of one digit or contains more digits
+        if(sum > 9)
+        {
+            return digitalRoot(sum);
+        }
+        
+        return sum;
+    }
+}

@@ -1,0 +1,38 @@
+class Solution{
+    
+    // function to convert a given Gray equivalent n to Binary equivalent.
+    public static int grayToBinary(int n) {
+        
+        // Your code here
+         // Your code here
+        // Gray code - 1000
+        // Binary - write the msb as it is and find xor of next bits with result
+        //  G : 1   0      0      0
+        //  B : 1(1^0=1)(1^0=1)(1^0=1)
+        //  After each iteration right shift the bits of number by once and we will
+        //  get the binary
+        
+        //     itr 1        itr 2      itr 3
+        //   n  : 1000       1100       1110
+        // temp : 0100       0010       0001
+        // gray : 1100       1110       1111 = Result
+        int gray = n;
+        for(int i = 1;i<=32;i++)
+        {
+            int temp = n>>i;
+            if(temp == 0)
+            {
+                return gray;
+            }
+            else
+            {
+                gray = gray ^ temp;
+                //System.out.println(gray);
+            }
+            
+        }
+        
+        return gray;
+    }
+       
+}

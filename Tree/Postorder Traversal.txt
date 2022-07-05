@@ -1,0 +1,20 @@
+class Tree
+{
+    //Function to return a list containing the postorder traversal of the tree.
+    ArrayList<Integer> postOrder(Node root)
+    {
+       // Your code goes here
+      ArrayList<Integer> arr = new ArrayList<Integer>();
+      if(root!=null)
+      {
+        //For every recursive call a separate arraylist will
+        // be generated 
+        // so for adding all those arraylist in arr we will use addAll()
+          arr.addAll(postOrder(root.left));
+          arr.addAll(postOrder(root.right));
+          arr.add(root.data);
+      }
+        return arr;
+
+    }
+}

@@ -1,0 +1,15 @@
+class Solution{
+    
+    //  Function to find the gray code of given number n
+    public static int greyConverter(int n) {
+        
+        // Your code here
+        // Binary - 1101
+        // Gray -   1(1^1)(1^0)(0^1) = right shift the number once we get the same 
+        //                             number by which we have to do xor
+        
+        int numRightShift = n>>1;
+        return n^numRightShift;
+    }
+    
+}
