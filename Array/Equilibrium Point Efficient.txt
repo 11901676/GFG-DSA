@@ -1,0 +1,38 @@
+class Solution {
+
+    
+    // a: input array
+    // n: size of array
+    // Function to find equilibrium point in the array.
+    public static int equilibriumPoint(long arr[], int n) {
+
+        // Your code here
+        if(n==1)
+        {
+            return 1;
+        }
+        int suml = (int)arr[0];
+        int sumr = (int)arr[n-1];
+        int l = 0;
+        int r = n-1;
+        while(l<=r-2)
+        {
+            if(sumr > suml)
+            {
+                l++;
+                suml = suml + (int)arr[l];
+            }
+            else
+            {
+                r--;
+                sumr = sumr + (int)arr[r];
+            }
+            
+            if((suml == sumr) && (l==r-2))
+            {
+                return l+2;
+            }
+        }
+        return -1;
+    }
+}
