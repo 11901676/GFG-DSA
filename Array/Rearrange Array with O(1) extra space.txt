@@ -1,0 +1,43 @@
+
+class Solution
+{
+ 
+    // arr: input array
+    // n: size of array
+    //Function to rearrange an array so that arr[i] becomes arr[arr[i]]
+    //with O(1) extra space.
+    static void arrange(long arr[], int n)
+    {
+        // your code here
+        arr[0] = arr[(int)arr[0]]*n + arr[0];
+        
+        // Modifying the array values with arr[i] and arr[arr[i]]
+        
+        // DIVIDEND = DIVISOR * QUOTIENT + REMAINDER
+        //              |          |          |
+        //              n     arr[arr[i]]   arr[i]
+        
+        
+        for(int i = 1; i < n;i++)
+        {
+            if(arr[i] < i)
+            {
+                // Because lesser index value will be the modified one
+                arr[i] = (arr[(int)arr[i]]%n)*n + arr[i];
+            }
+            else
+            {
+                // greater values are not modified yet
+                arr[i] = arr[(int)arr[i]]*n + arr[i];
+            }
+        }
+        
+        
+        // Desired output will be the quotient of the modified values
+        for(int i = 0; i < n;i++)
+        {
+            arr[i] = arr[i]/n;
+        }
+        
+    }
+}
