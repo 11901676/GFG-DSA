@@ -1,0 +1,66 @@
+class Solution{    
+    
+    // arr[]: input array
+    // num: size of array
+    // Function to check if array is sorted and rotated
+    public static boolean checkRotatedAndSorted(int arr[], int num){
+        
+        // Your code here
+        int increasingSequence = 0;
+        int decreasingSequence = 0;
+        boolean flag = false;
+        
+       
+        //40 30 20 10
+        //10 40 30 20 
+        //20 10 40 30 
+        //30 20 10 40 
+            
+        //if array is derived from a decreasing array then decreasing sequence will always
+        //be greater than increasing sequence
+           
+        //10 20 30 40
+        //40 10 20 30 
+        //30 40 10 20 
+        //20 30 40 10 
+                
+        //if array is derived from a increasing array then increasing sequence will always
+        //be greater than decreasing sequence
+        for(int i =0; i<num-1; i++)
+        {
+            if(arr[i]>arr[i+1])
+            {
+                increasingSequence++;
+            }
+            if(arr[i]<arr[i+1])
+            {
+                decreasingSequence++;
+            }
+        }
+        
+    
+    
+        //checking last condition
+        if(arr[num-1]>arr[0])
+        {
+            increasingSequence++;
+        }
+         
+        if(arr[num-1]<arr[0])
+        {
+            decreasingSequence++;
+        }
+     
+        if(increasingSequence<=1 && arr[num-1]<=arr[0])
+        {
+            flag = true;
+        }
+        if(decreasingSequence<=1 && arr[num-1]>=arr[0])
+        {
+            flag = true;
+        }
+        return flag;
+       
+    }
+    
+}
