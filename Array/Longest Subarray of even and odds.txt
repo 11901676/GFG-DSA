@@ -1,0 +1,25 @@
+class Solution
+{
+    // arr[]: input array
+    // n: size of array
+    //Function to find the length of longest subarray of even and odd numbers.
+    public static int maxEvenOdd(int arr[], int n)
+    {
+        // your code here
+        int longest = 1;
+        int count = 1;
+        for(int i = 1 ; i < n;i++)
+        {
+            if((arr[i]%2==0 && arr[i-1]%2==1) || arr[i]%2==1 && arr[i-1]%2==0)
+            {
+                count++;
+                longest = Math.max(longest, count);
+            }
+            else
+            {
+                count = 1;
+            }
+        }
+        return longest;
+    }
+}
