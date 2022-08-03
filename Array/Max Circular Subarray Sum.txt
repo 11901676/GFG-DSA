@@ -1,0 +1,53 @@
+class Solution{
+
+    // a: input array
+    // n: size of array
+    //Function to find maximum circular subarray sum.
+    
+    static int normalSubarrayMaxSum(int a[], int n)
+    {
+        int sum = a[0];
+        int maxEnding = a[0];
+        for(int i = 1;i < n;i++)
+        {
+            maxEnding = Math.max(maxEnding+a[i], a[i]);
+            sum = Math.max(sum, maxEnding);
+        }
+        return sum;
+    }
+    
+    
+    static int minSubarraySum(int arr[], int n)
+    {
+        int sum = arr[0];
+        int minEnding = arr[0];
+        for(int i = 1; i < n;i++)
+        {
+            minEnding = Math.min(arr[i]+minEnding, arr[i]);
+            sum = Math.min(minEnding, sum);
+        }
+        
+        return sum;
+    }
+    static int circularSubarraySum(int arr[], int n) {
+        
+        //finding sum of max-subarray
+        int maxNormalSum = normalSubarrayMaxSum(arr,n);
+        if(maxNormalSum < 0)
+        {
+            return maxNormalSum;
+        }
+        
+        //finding sum of whole array
+        int arr_sum = 0;
+        for(int i = 0; i < n;i++)
+        {
+            arr_sum = arr_sum+arr[i];
+        }
+        
+        int maxCircularSum = arr_sum-minSubarraySum(arr,n);
+        //finding max btw maxNormalSum and maxCircularSum
+        return Math.max(maxNormalSum,maxCircularSum);
+    }
+    
+}
