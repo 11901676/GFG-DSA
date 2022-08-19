@@ -1,0 +1,30 @@
+class Solution
+{
+     long floorSqrt(long x)
+	 {
+		// Your code here
+		long low  = 1L;
+		long high = x;
+		long floorSqrt = -1L;
+		//System.out.println(floorSqrt);
+		while(low <= high)
+		{
+		    long mid = low + (high-low)/2;
+		    if(mid*mid == x)
+		    {
+		        return mid;
+		    }
+		    if(mid*mid > x)
+		    {
+		        high = mid - 1;
+		    }
+		    if(mid*mid < x)
+		    {
+		        low = mid + 1;
+		        floorSqrt = mid;
+		        //System.out.println(floorSqrt);
+		    }
+		}
+		return floorSqrt;
+	 }
+}
