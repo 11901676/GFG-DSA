@@ -1,0 +1,46 @@
+class Solution{
+    
+    // Function to find floor of x
+    // arr: input array
+    // n is the size of array
+    static int findFloor(long arr[], int n, long x)
+    {
+        int low = 0;
+        int high = n-1;
+        
+        
+        while(low<=high)
+        {
+            int mid = low +(high-low)/2;
+            if(arr[mid]<x)
+            {
+                if(mid == n-1 || arr[mid+1]>x)
+                {
+                    return mid;
+                }
+                else
+                {
+                    // For handling the condition where just floor is equal to the number
+                    // otherwise mid will go beyond the index of number
+                    // 6 4
+                    // 1 2 3 4 5 7 
+                    
+                    if(arr[mid+1]==x)
+                    {
+                        return mid+1;
+                    }
+                    else
+                    {
+                        low = mid + 1;
+                    }
+                }
+            }
+            if(arr[mid] >= x)
+            {
+                high = mid - 1;
+            }
+        }
+        return -1;
+    }
+    
+}
