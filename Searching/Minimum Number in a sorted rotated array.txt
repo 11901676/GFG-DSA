@@ -1,0 +1,42 @@
+class Solution
+{
+    //Function to find the minimum element in sorted and rotated array.
+    static int minNumber(int arr[], int low, int high)
+    {
+        // Your code here
+        
+        
+        // For sorted-rotated array
+        // The side which is sorted will not contain the min
+        // Getting the sorted side
+        int n = arr.length;
+        while(low<=high)
+        {
+            int mid = low + (high-low)/2;
+           // System.out.println(mid);
+            if(arr[mid] >= arr[0])
+            {
+                // It means left half is sorted so skip left half
+                low = mid + 1;
+            }
+            
+            // Coming into right half(unsorted)
+            else
+            {
+                // if the previous element of mid is greater than mid then only it is min
+                if(mid==0 || arr[mid-1]>arr[mid])
+                {
+                    return arr[mid];
+                }
+                else
+                {
+                    // otherwise min is before mid
+                    high = mid - 1;
+                }
+            }
+        }
+        
+        // Otherwise the array not rotated it is sorted only so min will be arr[0]
+        return arr[0];
+    }
+}
