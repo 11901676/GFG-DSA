@@ -1,0 +1,73 @@
+import java.util.*;
+public class Main
+{
+    
+    public static void merge(int arr[], int low, int mid, int high)
+    {
+        int left_len = mid-low+1;
+        int righ_len = high-mid;
+        
+        int left[] = new int[left_len];
+        for(int i = 0; i < left_len; i++)
+        {
+            left[i] = arr[low + i];
+        }
+        
+        int right[] = new int[righ_len];
+        for(int i = 0; i < righ_len;i++)
+        {
+            right[i] = arr[mid+i+1];
+        }
+        
+        int i = 0, j = 0, k = low; //very important k = low
+        while(i < left_len && j < righ_len)
+        {
+            if(left[i] < right[j])
+            {
+                arr[k] = left[i];
+                i++;
+                k++;
+                System.out.println(k);
+            }
+            else
+            {
+                arr[k] = right[j];
+                j++;
+                k++;
+                System.out.println(k);
+            }
+        }
+        
+        while(i < left_len)
+        {
+            arr[k] = left[i];
+            i++;
+            k++;
+        }
+        
+        while(j < righ_len)
+        {
+            arr[k] = right[j];
+            j++;
+            k++;
+        }
+        
+    }
+    public static void mergeSort(int arr[], int left, int right)
+    {
+        if(right > left)
+        {
+            int mid = left + (right - left)/2;
+            mergeSort(arr, left, mid);
+            mergeSort(arr, mid+1,right);
+            merge(arr, left, mid, right);
+        }
+    }
+    
+    
+	public static void main(String[] args) {
+	int arr[] = {1,22,10,9,3,40};
+	mergeSort(arr, 0, 5);
+	System.out.println(Arrays.toString(arr));
+	}
+}
