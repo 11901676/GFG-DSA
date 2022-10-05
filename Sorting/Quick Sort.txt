@@ -1,0 +1,46 @@
+import java.util.*;
+public class Main
+{
+    static int partition(int arr[], int l, int h)
+    {
+        int i = l - 1;
+        int j = h + 1;
+        int pivot = arr[l];
+        while(true)
+        {
+            do{
+                i++;
+            }while(arr[i]<pivot);
+            
+            do{
+                j--;
+            }while(arr[j] > pivot);
+            
+            if(i >= j)
+            {
+                return j;
+            }
+            
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    }
+    
+    static void quickSort(int arr[], int l, int h)
+    {
+        if(l<h)
+        {
+            int p = partition(arr, l, h);
+            quickSort(arr, l, p);
+            quickSort(arr, p+1, h);
+        }
+        
+    }
+	public static void main(String[] args) {
+		int arr[] = {3,1,7,2,5,9,5,3,2,7,19,12};
+		int l = 0, h = arr.length-1;
+		quickSort(arr, l, h);
+		System.out.println(Arrays.toString(arr));
+	}
+}

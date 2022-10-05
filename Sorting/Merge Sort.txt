@@ -22,7 +22,7 @@ public class Main
         int i = 0, j = 0, k = low; //very important k = low
         while(i < left_len && j < righ_len)
         {
-            if(left[i] < right[j])
+            if(left[i] <= right[j])
             {
                 arr[k] = left[i];
                 i++;
