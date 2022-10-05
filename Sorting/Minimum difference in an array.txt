@@ -1,0 +1,15 @@
+
+class Solution{
+    //Function to find minimum difference between any pair of elements in an array.
+    public static int MinimumDifference(int arr[], int n)
+    {
+        // code here
+        Arrays.sort(arr);
+        int diff = Integer.MAX_VALUE;
+        for(int i = 1; i < n; i++)
+        {
+            diff = Math.min(diff , arr[i]-arr[i-1]);
+        }
+        return diff;
+    }
+}
