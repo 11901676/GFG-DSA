@@ -1,0 +1,32 @@
+public class Main
+{
+    
+    static void transposeMatrix(int arr[][])
+    {
+        int temp[][] = new int[arr.length][arr.length];
+        
+       for(int i = 0; i < arr.length; i++)
+       {
+           for(int j = 0; j < arr[i].length; j++)
+           {
+               temp[i][j] = arr[j][i];
+           }
+       }
+       
+       for(int i = 0; i < arr.length; i++)
+       {
+           for(int j = 0; j < arr.length; j++)
+           {
+               System.out.print(temp[i][j]+" ");
+           }
+           System.out.println();
+       }
+    }
+	public static void main(String[] args) {
+		int arr[][] = { {1,4,7,8},
+		                {2,3,5,9},
+		                {3,8,5,1},
+		                {8,9,4,3}};
+		transposeMatrix(arr);
+	}
+}
