@@ -1,0 +1,103 @@
+//User function Template for Java
+
+class Solution
+{
+    // arr[]: Input Array
+    // N : Size of the Array arr[]
+    // Function to count inversions in the array.
+    static long countInversion(long arr[], long low, long high)
+    {
+        long count = 0L;
+        if(low < high)
+        {
+            long mid = (high+low)/2;
+            count = count + countInversion(arr, low, mid);
+            count = count + countInversion(arr, mid + 1, high);
+            count = count + countAndMerge(arr, low, mid, high);
+            
+        }
+        return count;
+    }
+    
+    
+    static long countAndMerge(long arr[], long low, long mid, long high)
+    {
+        int left_len = (int)(mid - low + 1);
+        int right_len = (int)(high - mid);
+        
+        long left[] = new long[left_len];
+        long right[] = new long[right_len];
+        
+        
+        for(int i = 0; i < left_len; i++)
+        {
+            left[i] = arr[(int)low + i];
+        }
+        
+        for(int i = 0; i < right_len; i++)
+        {
+            right[i] = arr[(int)mid + i + 1];
+        }
+        
+        int i = 0, j = 0; 
+        long count = 0L;
+        int k = (int)low;
+        while(i < left_len && j < right_len)
+        {
+            if(left[i] <= right[j])
+            {
+                arr[k] = left[i];
+                i++;
+                k++;
+            }
+            else
+            {
+                arr[k] = right[j];
+                j++;
+                k++;
+                //it will form inversion with all the elements in right array
+                // left array = 2 5 8 11
+                //right array = 3 6 9 13
+                
+                // in the above example when we have reached ong 5 and found that left[i] > right[j]
+                // then because all the elements right to 5 are greater than 5(left_len - i) so 3
+                // will form inversion with all i.e. 5 8 and 11
+                count = count + (left_len - i);
+                
+            }
+        }
+        
+        while(i < left_len)
+        {
+            arr[k] = left[i];
+            i++;
+            k++;
+        }
+        
+        while(j < right_len)
+        {
+            arr[k] = right[j];
+            k++;
+            j++;
+        }
+        
+        return count;
+    }
+    
+    
+    
+    
+    
+    static long inversionCount(long arr[], long N)
+    {
+        // Your Code Here
+        long count = 0L;
+        long low = 0L;
+        long high = N-1;
+        
+        count = countInversion(arr, low, high);
+        
+        
+        return count;
+    }
+}
