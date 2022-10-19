@@ -1,0 +1,38 @@
+//User function Template for Java
+
+class Solution
+{
+    //Function to count the number of possible triangles.
+    static int findNumberOfTriangles(int arr[], int n)
+    {
+        // code here
+        int count = 0;
+        Arrays.sort(arr);
+        for(int i = n-1; i >= 1; i--)
+        {
+            int left = 0;
+            int right = i-1;
+            while(left < right)
+            {
+                // Checking the condition to be triangle
+                if(arr[left] + arr[right] > arr[i])
+                {
+                    // 1 2 3 4 5 6 7
+                    // Now if a triangle can be formed using arr[l] and arr[r] then triangles
+                    // can obviously be formed from a[l+1], a[l+2]…..a[r-1], arr[r] and a[i],
+                    // because the array is sorted , which can be directly
+                    // calculated using (r-l)
+                    count = count + (right - left); 
+                    right--;
+                }
+                else
+                {
+                    left++;
+                }
+            }
+        }
+        
+        return count;
+        
+    }
+}
