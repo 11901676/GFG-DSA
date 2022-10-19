@@ -1,0 +1,48 @@
+public class Main
+{
+    
+    static void search(int mat[][], int ele)
+    {
+        // Because 00 will be the smallest into the matrix and nn will be the greatest in the matrix
+        if(ele < mat[0][0] || ele > mat[mat.length-1][mat[0].length-1])
+        {
+            System.out.println(ele + " not found in the matrix");
+            return;
+        }
+        // we will start from the top-right corner of the matrix
+        // Because the array is column wise and row-wise sorted so if any element is greater than the element
+        // for which we are searching then the whole column will be greater than the element so we will skip
+        // that column and will move to the previous column
+        
+        int rowIndex = 0;
+        int columnIndex = mat[0].length-1;
+        while(rowIndex < mat.length && columnIndex >= 0)
+        {
+            if(mat[rowIndex][columnIndex] == ele)
+            {
+                System.out.println(ele + " found at index: (" + rowIndex + "," + columnIndex + ")");
+                return;
+            }
+            else if(mat[rowIndex][columnIndex] > ele)
+            {
+                columnIndex--;
+            }
+            else if(mat[rowIndex][columnIndex] < ele)
+            {
+                rowIndex++;
+            }
+        }
+        
+        System.out.println(ele + " not found in the matrix");
+        
+    }
+	public static void main(String[] args) {
+	    int mat[][] =   {{2,3,7,10},
+	                    {5,8,9,11},
+	                    {12,45,78,85},
+	                    {34,65,80,90}
+	                    };
+	   search(mat, 45);
+	   search(mat, 99);
+	}
+}
