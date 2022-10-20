@@ -1,0 +1,43 @@
+
+class Solution{
+    //Function to partition the array around the range such 
+    //that array is divided into three parts.
+    
+    
+    public void threeWayPartition(int array[], int a, int b)
+    {
+        // code here 
+        
+            int smaller = 0;
+            int inRange = 0;
+            int greater = array.length-1;
+            
+            while(inRange <= greater)
+            {
+                if(array[inRange] < a)
+                {
+                    int temp = array[smaller];
+                    array[smaller] = array[inRange];
+                    array[inRange] = temp;
+                    
+                    
+                    smaller++;
+                    inRange++;
+                }
+                else if(array[inRange] >= a && array[inRange] <=b)
+                {
+                    inRange++;
+                }
+                else if(array[inRange] > b)
+                {
+                    int temp = array[inRange];
+                    array[inRange] = array[greater];
+                    array[greater] = temp;
+                    
+                    greater--;
+                }
+            }
+            //System.out.println(Arrays.toString(array));
+        
+    }
+}
