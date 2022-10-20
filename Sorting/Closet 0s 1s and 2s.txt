@@ -1,0 +1,40 @@
+class Solution
+{
+    // The function should do the stated modifications in the given array arr[]
+    // Do not return anything.
+    
+    // arr[]: Input Array
+    // N: Size of the Array arr[]
+    //Function to segregate 0s, 1s and 2s in sorted increasing order.
+    public static void segragate012(int arr[], int N){
+        // Your Code Here
+        int zeros = 0;
+        int ones = 0;
+        int twos = N-1;
+        
+        while(ones <= twos)
+        {
+            if(arr[ones] == 0)
+            {
+                int temp = arr[ones];
+                arr[ones] = arr[zeros];
+                arr[zeros] = temp;
+                
+                zeros++;
+                ones++;
+            }
+            else if(arr[ones] == 1)
+            {
+                ones++;
+            }
+            else if(arr[ones] == 2)
+            {
+                int temp = arr[ones];
+                arr[ones] = arr[twos];
+                arr[twos] = temp;
+                
+                twos--;
+            }
+        }
+    }
+}
