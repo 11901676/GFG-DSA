@@ -1,0 +1,78 @@
+class Solution
+{
+    // A[], B[], C[]: input arrays
+    //Function to merge three sorted lists into a single list.
+    static ArrayList<Integer> merge3sorted(int A[], int B[], int C[])
+    {
+        // add your code here
+        
+        // First Phase => merging and sorting the first two arrays
+        int firstPhase[] = new int[A.length + B.length];
+        int i = 0;
+        int j = 0;
+        int k = 0;
+        while(i < A.length && j < B.length)
+        {
+            if(A[i] <= B[j])
+            {
+                firstPhase[k] = A[i];
+                i++;
+                k++;
+            }
+            else
+            {
+                firstPhase[k] = B[j];
+                j++;
+                k++;
+            }
+        }
+        
+        while(i < A.length)
+        {
+            firstPhase[k] = A[i];
+            i++;
+            k++;
+        }
+        
+        while( j < B.length)
+        {
+            firstPhase[k] = B[j];
+            j++;
+            k++;
+        }
+        
+        
+        //Final Phase => merging and sorting the resultant and last array
+        ArrayList<Integer> result = new ArrayList<>();
+        int a = 0;
+        int b = 0;
+        while(a < firstPhase.length && b < C.length)
+        {
+            if(firstPhase[a] <= C[b])
+            {
+                result.add(firstPhase[a]);
+                a++;
+            }
+            else
+            {
+                result.add(C[b]);
+                b++;
+            }
+        }
+        
+        while(a < firstPhase.length)
+        {
+            result.add(firstPhase[a]);
+            a++;
+        }
+        
+        while(b < C.length)
+        {
+            result.add(C[b]);
+            b++;
+        }
+        
+        return result;
+        
+    }
+}
