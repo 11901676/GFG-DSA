@@ -1,0 +1,57 @@
+class Solution
+{
+    //Function to find the minimum number of platforms required at the
+    //railway station such that no train waits.
+    static int findPlatform(int arr[], int dep[], int n)
+    {
+        // add your code here
+        int i = 0;
+        int j = 0;
+        int maxOccupiedPlatform = 0;
+        int count = 0;
+        
+        Arrays.sort(arr);
+        Arrays.sort(dep);
+        
+        /*
+         arr => 900   940     950     1100    1500    1800
+         dep => 910   1120    1130    1200    1900    2000
+        
+         Now we are checking that how many max platform are occupied at any instance by trains
+         
+         Train      Occupied platform
+         900(arr)           1
+         910(dep)           0
+         940(arr)           1
+         950(arr)           2
+         1100(arr)          3
+         1120(dep)          2
+         1130(dep)          1
+         1200(dep)          0
+         1500(arr)          1
+         1800(arr)          2
+         1900(dep)          1
+         2000(dep)          0
+         
+        So we can now see that max of 3 platforms are occupied at any instance.
+         
+         */
+        while(i < n && j < n)
+        {
+            if(arr[i] <= dep[j])
+            {
+                count++;
+                i++;
+                maxOccupiedPlatform = Math.max(count, maxOccupiedPlatform);
+            }
+            else
+            {
+                count--;
+                j++;
+            }
+        }
+        
+        return maxOccupiedPlatform;
+    }
+    
+}
