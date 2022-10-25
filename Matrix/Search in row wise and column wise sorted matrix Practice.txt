@@ -1,0 +1,36 @@
+class Solution 
+{ 
+    //Function to search a given number in row-column sorted matrix.
+	static boolean search(int matrix[][], int n, int m, int x) 
+	{  
+	    // if element is greater than the greatest and lower than the lowest then 
+	    // certainly it will not be present into the matrix
+	    
+	    if(x < matrix[0][0] || x > matrix[n-1][m-1])
+	    {
+	        return false;
+	    }
+	    else
+	    {
+	        int rowIndex = 0;
+            int columnIndex = m-1;
+            while(rowIndex < n && columnIndex >= 0)
+            {
+                if(matrix[rowIndex][columnIndex] == x)
+                {
+                    return true;
+                }
+                else if(matrix[rowIndex][columnIndex] > x)
+                {
+                    columnIndex--;
+                }
+                else if(matrix[rowIndex][columnIndex] < x)
+                {
+                    rowIndex++;
+                }
+            }
+            return false;
+	    }
+	    
+	} 
+}
