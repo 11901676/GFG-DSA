@@ -1,0 +1,25 @@
+class Solution
+{
+    //Function to interchange the rows of a matrix.
+    static void interchangeRows(int matrix[][])
+    {
+        // code here 
+        
+        int top = 0;
+        int bottom = matrix.length-1;
+        while(top < bottom)
+        {
+            int i = 0;
+            while(i < matrix[0].length)
+            {
+                int temp = matrix[top][i];
+                matrix[top][i] = matrix[bottom][i];
+                matrix[bottom][i] = temp;
+                i++;
+            }
+            top++;
+            bottom--;
+        }
+        
+    }
+}
