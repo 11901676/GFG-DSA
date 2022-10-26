@@ -1,0 +1,65 @@
+class Solution 
+{
+    //Function to find minimum number of operations that are required 
+    //to make the matrix beautiful.
+    static int findMinOperation(int matrix[][], int n)
+    {
+        // code here
+        int rowSumArr[] = new int[n];
+        int colSumArr[] = new int[n];
+        for(int i =0 ; i < n; i++)
+        {
+            int rowSum = 0;
+            for(int j = 0; j < matrix[0].length; j++)
+            {
+                rowSum = rowSum + matrix[i][j];
+            }
+            rowSumArr[i] = rowSum;
+            
+            int colSum = 0;
+            for(int j = 0; j < matrix.length; j++)
+            {
+                colSum = colSum + matrix[j][i];
+            }
+            colSumArr[i] = colSum;
+        }
+        
+        //System.out.println(Arrays.toString(rowSumArr));
+        //System.out.println(Arrays.toString(colSumArr));
+        
+        
+        // Finding the max rowSum
+        int rowMax = rowSumArr[0];
+        for(int i = 0;i < n; i++)
+        {
+            if(rowSumArr[i] > rowMax)
+            {
+                rowMax = rowSumArr[i];
+            }
+        }
+        //System.out.println(rowMax);
+        
+        // Finding the max colSum
+        int colMax = colSumArr[0];
+        for(int i = 0;i < n; i++)
+        {
+            if(colSumArr[i] > colMax)
+            {
+                colMax = colSumArr[i];
+            }
+        }
+        //System.out.println(colMax);
+        
+        int maxSum = Math.max(rowMax, colMax);
+        
+        int requiredOperations = 0;
+        for(int i = 0; i < n; i++)
+        {
+            requiredOperations += (maxSum-rowSumArr[i]);
+            //System.out.println(requiredOperations);
+        }
+        
+        
+        return requiredOperations;
+    }
+}
