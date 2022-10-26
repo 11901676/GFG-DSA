@@ -1,0 +1,81 @@
+class Solution
+{
+    //Function to modify the matrix such that if a matrix cell matrix[i][j]
+    //is 1 then all the cells in its ith row and jth column will become 1.
+    void booleanMatrix(int matrix[][])
+    {
+        boolean rowFlag = false;
+        boolean colFlag = false;
+        for(int i = 0; i < matrix.length; i++)
+        {
+            for(int j = 0; j < matrix[0].length; j++)
+            {
+                // Handling the 1st row and 1st column separately because we are considering
+                // 1st row and 1st column as a indicator so if we will not handle these then
+                // as soon as elments of 1st row or column gets updated all the rows and col
+                // umns will become 1 that will lead to wrong output
+                
+                if(i == 0 && matrix[i][j] == 1)
+                {
+                    rowFlag = true;
+                }
+                
+                if(j == 0 && matrix[i][j] == 1)
+                {
+                    colFlag = true;
+                }
+                
+                
+                // using the first row and column to store identify in which row or column
+                // 1 is present
+                if(matrix[i][j] == 1)
+                {
+                    // it means in this row 1 is present
+                    matrix[i][0] = 1;
+                    
+                    // it means in this column 1 is present
+                    matrix[0][j] = 1;
+                }
+            }
+        }
+        
+        
+        // We are here not updating the first row and column first because it will change 
+        // if we update them fist then inspite of having not any 1 in those data will get
+        // modified because after updation it will have 1
+        
+        // Updating the columns
+        for(int i = 1; i < matrix.length; i++)
+        {
+            
+            for(int j = 1; j < matrix[0].length; j++)
+            {
+                // check if entry in row and column 1 is 1 then make that row and column 
+                // element to 1
+                if(matrix[i][0] == 1 || matrix[0][j] == 1)
+                {
+                    matrix[i][j] = 1;
+                }
+            }
+        }
+        
+        // Updating the first row
+        if(rowFlag == true)
+        {
+            for(int i = 0; i < matrix[0].length; i++)
+            {
+                matrix[0][i] = 1;
+            }
+        }
+        
+        //Updating the first column
+        if(colFlag == true)
+        {
+            for(int i = 0; i < matrix.length; i++)
+            {
+                matrix[i][0] = 1;
+            }
+        }
+        
+    }
+}
